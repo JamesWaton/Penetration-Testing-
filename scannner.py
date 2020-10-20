@@ -4,6 +4,7 @@
 import nmap
 
 
+
 scanner = nmap.PortScanner()
 
 print("Welcome, this is a simple nmap automation tool")
@@ -34,3 +35,13 @@ elif resp =='2':
     print("Ip status: ", scanner[ip_addr].state()) #to tell if online or offline
     print(scanner[ip_addr].all_protocols())
     print("Open Ports: ", scanner[ip_addr]['udp'].keys())    
+elif resp == '3':
+    print("Nmap Version: ", scanner.nmap_version())  #same as a usual nmap scan in console
+    scanner.scan(ip_addr, '1-1024', '-v -sS -sV -sC -A -O')
+    print(scanner.scaninfo())
+    print("Ip status: ", scanner[ip_addr].state()) #to tell if online or offline
+    print(scanner[ip_addr].all_protocols())
+    print("Open Ports: ", scanner[ip_addr]['tcp'].keys())  
+elif resp >= '4':
+    print("Please enter a valid option")
+
